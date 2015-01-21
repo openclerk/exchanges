@@ -1,0 +1,20 @@
+{
+  "name": "openclerk/exchanges",
+  "description": "Definitions and implementations of exchanges in Openclerk",
+  "autoload": {
+    "psr-4": {
+      "Exchange\\": "src",
+      "Exchange\\Tests\\": "test"
+    }
+  },
+  "require": {
+    "openclerk/config": "dev-master",
+    "openclerk/currencies": "dev-master",
+    "openclerk/apis": "dev-master",
+    "monolog/monolog": "~1.11",
+    "php": ">=5.4.6"
+  },
+  "require-dev": {
+    "soundasleep/component-tests": "dev-master"
+  }
+}
