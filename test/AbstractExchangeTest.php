@@ -67,6 +67,11 @@ abstract class AbstractExchangeTest extends \PHPUnit_Framework_TestCase {
     return $this->rates;
   }
 
+  function testExchangeCodeLength() {
+    $this->assertGreaterThanOrEqual(1, strlen($this->exchange->getCode()));
+    $this->assertLessThanOrEqual(32, strlen($this->exchange->getCode()));
+  }
+
   function testHasAtLeastOneMarket() {
     $markets = $this->getAllMarkets();
     $this->assertGreaterThan(0, count($markets), "Expected at least one market");
