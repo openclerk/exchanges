@@ -85,6 +85,18 @@ abstract class AbstractExchangeTest extends \PHPUnit_Framework_TestCase {
     }
   }
 
+  function testAllRatesProvideCurrencyCodes() {
+    $rates = $this->getAllRates();
+    foreach ($rates as $key => $rate) {
+      $this->assertTrue(isset($rate['currency1']), "currency1 should be set in " . print_r($rate, true));
+      $this->assertTrue(isset($rate['currency2']), "currency2 should be set in " . print_r($rate, true));
+      $currency1 = substr($key, 0, 3);
+      $currency2 = substr($key, 3, 3);
+      $this->assertEquals($currency1, $rate['currency1'], "currency1 was not '$currency1' from key '$key'");
+      $this->assertEquals($currency2, $rate['currency2'], "currency2 was not '$currency2' from key '$key'");
+    }
+  }
+
   /**
    * For all markets, the bid should always be higher than the ask - or else there is
    * something odd going on.

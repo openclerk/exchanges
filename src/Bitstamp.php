@@ -32,6 +32,8 @@ class Bitstamp extends SimpleExchange {
     }
 
     $rate = array(
+      "currency1" => "usd",
+      "currency2" => "btc",
       "bid" => $json['bid'],
       "ask" => $json['ask'],
       "last_trade" => $json['last'],
@@ -41,7 +43,7 @@ class Bitstamp extends SimpleExchange {
       "vwap" => $json['vwap'],
     );
 
-    return array("usdbtc" => $rate);
+    return array($rate['currency1'] . $rate['currency2'] => $rate);
   }
 
 }
