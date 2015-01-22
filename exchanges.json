@@ -3,6 +3,7 @@
   "bit2c": "\\Exchange\\Bit2c",
   "bitcurex": "\\Exchange\\Bitcurex",
   "bitmarket_pl": "\\Exchange\\BitmarketPl",
+  "bitnz": "\\Exchange\\BitNZ",
   "bitstamp": "\\Exchange\\Bitstamp",
   "bittrex": "\\Exchange\\Bittrex"
 }
