@@ -18,5 +18,6 @@
   "kraken": "\\Exchange\\Kraken",
   "poloniex": "\\Exchange\\Poloniex",
   "themoneyconverter": "\\Exchange\\TheMoneyConverter",
-  "vircurex": "\\Exchange\\Vircurex"
+  "vircurex": "\\Exchange\\Vircurex",
+  "virtex": "\\Exchange\\VirtEx"
 }
