@@ -59,7 +59,13 @@ abstract class AbstractExchangeTest extends \PHPUnit_Framework_TestCase {
    */
   function getAllMarkets() {
     if (!isset(self::$markets[$this->exchange->getCode()])) {
-      self::$markets[$this->exchange->getCode()] = $this->exchange->fetchMarkets($this->logger);
+      try {
+        self::$markets[$this->exchange->getCode()] = $this->exchange->fetchMarkets($this->logger);
+      } catch (\Api\FetchException $e) {
+        // don't continually request the same failing exchange multiple times
+        self::$rates[$this->exchange->getCode()] = false;
+        throw $e;
+      }
     }
     return self::$markets[$this->exchange->getCode()];
   }
@@ -70,7 +76,13 @@ abstract class AbstractExchangeTest extends \PHPUnit_Framework_TestCase {
    */
   function getAllRates() {
     if (!isset(self::$rates[$this->exchange->getCode()])) {
-      self::$rates[$this->exchange->getCode()] = $this->exchange->fetchAllRates($this->logger);
+      try {
+        self::$rates[$this->exchange->getCode()] = $this->exchange->fetchAllRates($this->logger);
+      } catch (\Api\FetchException $e) {
+        // don't continually request the same failing exchange multiple times
+        self::$rates[$this->exchange->getCode()] = false;
+        throw $e;
+      }
     }
     return self::$rates[$this->exchange->getCode()];
   }
