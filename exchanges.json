@@ -13,5 +13,6 @@
   "coinbase": "\\Exchange\\Coinbase",
   "coins-e": "\\Exchange\\CoinsE",
   "crypto-trade": "\\Exchange\\CryptoTrade",
-  "cryptsy": "\\Exchange\\Cryptsy"
+  "cryptsy": "\\Exchange\\Cryptsy",
+  "itbit": "\\Exchange\\ItBit"
 }
