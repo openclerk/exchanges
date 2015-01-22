@@ -102,7 +102,7 @@ class Anxpro extends SimpleExchange {
         "avg" => $json['data']['avg']['value'],
       );
 
-      $result[$rate['currency1'] . $rate['currency2']] = $rate;
+      $result[] = $rate;
     }
 
     return $result;

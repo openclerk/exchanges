@@ -70,7 +70,7 @@ class Bit2c extends SimpleExchange {
         "avg" => $json['ll'],
       );
 
-      $result[$rate['currency1'] . $rate['currency2']] = $rate;
+      $result[] = $rate;
     }
 
     return $result;

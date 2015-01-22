@@ -43,7 +43,7 @@ class Bitstamp extends SimpleExchange {
       "vwap" => $json['vwap'],
     );
 
-    return array($rate['currency1'] . $rate['currency2'] => $rate);
+    return array($rate);
   }
 
 }

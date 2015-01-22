@@ -84,12 +84,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/openclerk/apis.git",
-                "reference": "4f8573f9a75db509956bc31017acb877fefa02a4"
+                "reference": "d7e1fa215a080bc83b01303b02a5048accb36a26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openclerk/apis/zipball/4f8573f9a75db509956bc31017acb877fefa02a4",
-                "reference": "4f8573f9a75db509956bc31017acb877fefa02a4",
+                "url": "https://api.github.com/repos/openclerk/apis/zipball/d7e1fa215a080bc83b01303b02a5048accb36a26",
+                "reference": "d7e1fa215a080bc83b01303b02a5048accb36a26",
                 "shasum": ""
             },
             "require": {
@@ -109,7 +109,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "A library for defining and using APIs",
-            "time": "2015-01-14 03:52:41"
+            "time": "2015-01-22 02:19:32"
         },
         {
             "name": "openclerk/config",
@@ -140,12 +140,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/openclerk/currencies.git",
-                "reference": "4b37d66a83524d57c9cf79a208f147ef70676a79"
+                "reference": "7fa73ee8f9c4da48158bff1e91c18adc84c650c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openclerk/currencies/zipball/4b37d66a83524d57c9cf79a208f147ef70676a79",
-                "reference": "4b37d66a83524d57c9cf79a208f147ef70676a79",
+                "url": "https://api.github.com/repos/openclerk/currencies/zipball/7fa73ee8f9c4da48158bff1e91c18adc84c650c8",
+                "reference": "7fa73ee8f9c4da48158bff1e91c18adc84c650c8",
                 "shasum": ""
             },
             "require": {
@@ -158,7 +158,7 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
-            "time": "2015-01-22 00:36:27"
+            "time": "2015-01-22 02:36:33"
         },
         {
             "name": "psr/log",

@@ -87,7 +87,8 @@ abstract class AbstractExchangeTest extends \PHPUnit_Framework_TestCase {
 
   function testAllMarketsHaveLastTrade() {
     $rates = $this->getAllRates();
-    foreach ($rates as $key => $rate) {
+    foreach ($rates as $rate) {
+      $key = $rate['currency1'] . $rate['currency2'];
       $this->assertTrue(isset($rate['last_trade']), "last_trade not set in " . print_r($rate, true));
       $this->assertGreaterThan(0, $rate['last_trade'], "Last trade for '$key' should be greater than 0");
     }
@@ -95,13 +96,9 @@ abstract class AbstractExchangeTest extends \PHPUnit_Framework_TestCase {
 
   function testAllRatesProvideCurrencyCodes() {
     $rates = $this->getAllRates();
-    foreach ($rates as $key => $rate) {
-      $this->assertTrue(isset($rate['currency1']), "currency1 should be set in " . print_r($rate, true));
+    foreach ($rates as $rate) {
+      $this->assertTrue(isset($rate['currency1']), "currency1 should be set in  " . print_r($rate, true));
       $this->assertTrue(isset($rate['currency2']), "currency2 should be set in " . print_r($rate, true));
-      $currency1 = substr($key, 0, 3);
-      $currency2 = substr($key, 3, 3);
-      $this->assertEquals($currency1, $rate['currency1'], "currency1 was not '$currency1' from key '$key'");
-      $this->assertEquals($currency2, $rate['currency2'], "currency2 was not '$currency2' from key '$key'");
     }
   }
 
@@ -111,8 +108,9 @@ abstract class AbstractExchangeTest extends \PHPUnit_Framework_TestCase {
    */
   function testAllMarketsHaveBidHigherThanAsk() {
     $rates = $this->getAllRates();
-    foreach ($rates as $key => $rate) {
+    foreach ($rates as $rate) {
       if (isset($rate['bid']) && isset($rate['ask'])) {
+        $key = $rate['currency1'] . $rate['currency2'];
         $this->assertGreaterThanOrEqual($rate['bid'], $rate['ask'], "Expected bid > ask for '$key' market");
       }
     }

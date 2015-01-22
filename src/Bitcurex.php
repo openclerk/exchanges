@@ -66,7 +66,7 @@ class Bitcurex extends SimpleExchange {
         "volume" => $json['last24_volume'] / 1e8,
       );
 
-      $result[$rate['currency1'] . $rate['currency2']] = $rate;
+      $result[] = $rate;
     }
 
     return $result;

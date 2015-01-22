@@ -2,5 +2,6 @@
   "anxpro": "\\Exchange\\Anxpro",
   "bit2c": "\\Exchange\\Bit2c",
   "bitcurex": "\\Exchange\\Bitcurex",
-  "bitstamp": "\\Exchange\\Bitstamp"
+  "bitstamp": "\\Exchange\\Bitstamp",
+  "bittrex": "\\Exchange\\Bittrex"
 }
