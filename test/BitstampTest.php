@@ -14,14 +14,13 @@ class BitstampTest extends AbstractExchangeTest {
   }
 
   function testHasUSDBTC() {
-    $rates = $this->exchange->fetchMarkets($this->logger);
-    $this->assertNotFalse(array_search(array('usd', 'btc'), $rates), "Expected USD/BTC market in " . $this->printMarkets($rates));
+    $markets = $this->getAllMarkets();
+    $this->assertNotFalse(array_search(array('usd', 'btc'), $markets), "Expected USD/BTC market in " . $this->printMarkets($markets));
   }
 
-
   function testHasAtLeastOneMarket() {
-    $rates = $this->exchange->fetchMarkets($this->logger);
-    $this->assertGreaterThan(0, count($rates), "Expected at least one market");
+    $markets = $this->getAllMarkets();
+    $this->assertGreaterThan(0, count($markets), "Expected at least one market");
   }
 
 }

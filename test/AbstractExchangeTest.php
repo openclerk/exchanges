@@ -15,8 +15,8 @@ use Openclerk\Currencies\Exchange;
 abstract class AbstractExchangeTest extends \PHPUnit_Framework_TestCase {
 
   // we cache market and rate values so we don't spam services
-  var $markets = null;
-  var $rates = null;
+  static $markets = array();
+  static $rates = array();
 
   function __construct(Exchange $exchange) {
     $this->logger = new Logger("test");
@@ -53,18 +53,26 @@ abstract class AbstractExchangeTest extends \PHPUnit_Framework_TestCase {
     return "[" . implode(", ", $result) . "]";
   }
 
+  /**
+   * Calls {@link Exchange#fetchMarkets()} but caches the return value so that we don't
+   * spam services when testing.
+   */
   function getAllMarkets() {
-    if ($this->markets === null) {
-      $this->markets = $this->exchange->fetchMarkets($this->logger);
+    if (!isset(self::$markets[$this->exchange->getCode()])) {
+      self::$markets[$this->exchange->getCode()] = $this->exchange->fetchMarkets($this->logger);
     }
-    return $this->markets;
+    return self::$markets[$this->exchange->getCode()];
   }
 
+  /**
+   * Calls {@link Exchange#fetchAllRates()} but caches the return value so that we don't
+   * spam services when testing.
+   */
   function getAllRates() {
-    if ($this->rates === null) {
-      $this->rates = $this->exchange->fetchAllRates($this->logger);
+    if (!isset(self::$rates[$this->exchange->getCode()])) {
+      self::$rates[$this->exchange->getCode()] = $this->exchange->fetchAllRates($this->logger);
     }
-    return $this->rates;
+    return self::$rates[$this->exchange->getCode()];
   }
 
   function testExchangeCodeLength() {
