@@ -27,7 +27,12 @@ class TheMoneyConverter extends SimpleExchange {
    * so that it can be used in openclerk/currencies
    */
   function getCurrencyCode($str) {
-    return strtolower($str);
+    switch ($str) {
+      case "ghs": return "ghana";
+
+      default:
+        return strtolower($str);
+    }
   }
 
   function fetchAllRates(Logger $logger) {
@@ -48,6 +53,11 @@ class TheMoneyConverter extends SimpleExchange {
       $pair = explode("/", $title, 2);
       $currency1 = $this->getCurrencyCode($pair[1]);
       $currency2 = $this->getCurrencyCode($pair[0]);
+
+      if ($currency1 == $currency2) {
+        // no need to insert the value '1.0'
+        continue;
+      }
 
       if (preg_match("#1 [^=]+ = ([0-9\.]+) #i", $description, $matches)) {
         $result[] = array(
