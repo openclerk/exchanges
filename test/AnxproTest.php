@@ -11,7 +11,6 @@ class AnxproTest extends AbstractExchangeTest {
 
   function __construct() {
     parent::__construct(new \Exchange\Anxpro());
-    $this->logger->info("AnxproTest::Construct");
   }
 
   function testHasUSDBTC() {

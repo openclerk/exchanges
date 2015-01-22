@@ -11,7 +11,6 @@ class Bit2cTest extends AbstractExchangeTest {
 
   function __construct() {
     parent::__construct(new \Exchange\Bit2c());
-    $this->logger->info("AnxproTest::Construct");
   }
 
   function testHasILSBTCMarket() {

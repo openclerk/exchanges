@@ -1,9 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "c1c5500eaf2ffe04f59fc77144f21a9b",
+    "hash": "b7c9a269efe907ce95876b2867775679",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -116,12 +117,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/openclerk/config.git",
-                "reference": "c86c7dc7567efbf406fd9ceb4252c80560e60bec"
+                "reference": "0c5c0335718c479050e9eba0df727447297927f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openclerk/config/zipball/c86c7dc7567efbf406fd9ceb4252c80560e60bec",
-                "reference": "c86c7dc7567efbf406fd9ceb4252c80560e60bec",
+                "url": "https://api.github.com/repos/openclerk/config/zipball/0c5c0335718c479050e9eba0df727447297927f1",
+                "reference": "0c5c0335718c479050e9eba0df727447297927f1",
                 "shasum": ""
             },
             "type": "library",
@@ -131,7 +132,7 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
-            "time": "2014-12-08 02:13:51"
+            "time": "2015-01-21 01:56:33"
         },
         {
             "name": "openclerk/currencies",
@@ -139,12 +140,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/openclerk/currencies.git",
-                "reference": "5c9b0fa36677962b02b7dc08447b1b22f3b4b50d"
+                "reference": "4b37d66a83524d57c9cf79a208f147ef70676a79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openclerk/currencies/zipball/5c9b0fa36677962b02b7dc08447b1b22f3b4b50d",
-                "reference": "5c9b0fa36677962b02b7dc08447b1b22f3b4b50d",
+                "url": "https://api.github.com/repos/openclerk/currencies/zipball/4b37d66a83524d57c9cf79a208f147ef70676a79",
+                "reference": "4b37d66a83524d57c9cf79a208f147ef70676a79",
                 "shasum": ""
             },
             "require": {
@@ -157,7 +158,7 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
-            "time": "2015-01-21 01:46:58"
+            "time": "2015-01-22 00:36:27"
         },
         {
             "name": "psr/log",
@@ -922,9 +923,7 @@
             "time": "2015-01-03 15:33:07"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "openclerk/config": 20,
@@ -932,10 +931,10 @@
         "openclerk/apis": 20,
         "soundasleep/component-tests": 20
     },
+    "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": {
         "php": ">=5.4.6"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }
