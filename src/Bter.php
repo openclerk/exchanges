@@ -30,6 +30,7 @@ class Bter extends SimpleExchange {
     switch (strtolower($str)) {
       // exceptions
       case "doge": return "dog";
+      case "blk": return "bc1";
 
       // otherwise return lowercase
       default:

@@ -8,5 +8,6 @@
   "bittrex": "\\Exchange\\Bittrex",
   "btcchina": "\\Exchange\\BTCChina",
   "btce": "\\Exchange\\BTCe",
-  "bter": "\\Exchange\\Bter"
+  "bter": "\\Exchange\\Bter",
+  "cexio": "\\Exchange\\CEXio"
 }
