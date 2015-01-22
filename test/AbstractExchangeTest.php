@@ -61,6 +61,7 @@ abstract class AbstractExchangeTest extends \PHPUnit_Framework_TestCase {
     if (!isset(self::$markets[$this->exchange->getCode()])) {
       try {
         self::$markets[$this->exchange->getCode()] = $this->exchange->fetchMarkets($this->logger);
+        $this->logger->info("Found " . $this->printMarkets(self::$markets[$this->exchange->getCode()]) . " markets");
       } catch (\Api\FetchException $e) {
         // don't continually request the same failing exchange multiple times
         self::$rates[$this->exchange->getCode()] = false;

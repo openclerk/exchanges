@@ -49,11 +49,6 @@ class BTCe extends SimpleExchange {
     }
   }
 
-  /**
-   * Bitcurex does not have any API to list all available markets,
-   * so we hardcode this.
-   * Does not block.
-   */
   public function fetchMarkets(Logger $logger) {
     $url = "https://btc-e.com/api/3/info";
     $logger->info($url);
