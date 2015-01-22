@@ -18,9 +18,4 @@ class BitstampTest extends AbstractExchangeTest {
     $this->assertNotFalse(array_search(array('usd', 'btc'), $markets), "Expected USD/BTC market in " . $this->printMarkets($markets));
   }
 
-  function testHasAtLeastOneMarket() {
-    $markets = $this->getAllMarkets();
-    $this->assertGreaterThan(0, count($markets), "Expected at least one market");
-  }
-
 }
