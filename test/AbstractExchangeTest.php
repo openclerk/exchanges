@@ -103,17 +103,21 @@ abstract class AbstractExchangeTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * For all markets, the bid should always be higher than the ask - or else there is
+   * For all markets, the ask should always be higher than the bid - or else there is
    * something odd going on.
+   *
+   * The 'bid' price is the highest price that a buyer is willing to pay (i.e. the 'sell');
+   * the 'ask' price is the lowest price that a seller is willing to sell (i.e. the 'buy').
+   * Therefore bid <= ask, buy <= sell.
    */
-  function testAllMarketsHaveBidHigherThanAsk() {
+  function testAllMarketsHaveAskHigherThanBid() {
     $rates = $this->getAllRates();
     foreach ($rates as $rate) {
-      if (isset($rate['bid']) && isset($rate['ask'])) {
+      if (isset($rate['ask']) && isset($rate['bid'])) {
         // some exchanges have markets with zero bids or zero asks; don't fail here
-        if ($rate['bid'] != 0 && $rate['ask'] != 0) {
+        if ($rate['ask'] != 0 && $rate['bid'] != 0) {
           $key = $rate['currency1'] . "/" . $rate['currency2'];
-          $this->assertGreaterThanOrEqual($rate['bid'], $rate['ask'], "Expected bid > ask for '$key' market");
+          $this->assertGreaterThanOrEqual($rate['bid'], $rate['ask'], "Expected ask > bid for '$key' market");
         }
       }
     }
