@@ -35,6 +35,7 @@ class CurrencyOrder {
     'dvc',
     'trc',
     'qrk',
+    'ixc',
     'dgc',
     'wdc',
     'bc1',
