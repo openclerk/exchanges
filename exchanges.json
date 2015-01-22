@@ -12,5 +12,6 @@
   "cexio": "\\Exchange\\CEXio",
   "coinbase": "\\Exchange\\Coinbase",
   "coins-e": "\\Exchange\\CoinsE",
-  "crypto-trade": "\\Exchange\\CryptoTrade"
+  "crypto-trade": "\\Exchange\\CryptoTrade",
+  "cryptsy": "\\Exchange\\Cryptsy"
 }

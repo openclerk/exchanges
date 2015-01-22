@@ -67,7 +67,7 @@ class Bit2c extends SimpleExchange {
         "ask" => $json['l'],
         "last_trade" => $json['ll'],
         "volume" => $json['a'],
-        "avg" => $json['ll'],
+        "avg" => $json['av'],
       );
 
       $result[] = $rate;

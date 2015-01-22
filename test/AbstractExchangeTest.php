@@ -28,7 +28,7 @@ abstract class AbstractExchangeTest extends \PHPUnit_Framework_TestCase {
       $this->logger->pushHandler(new NullHandler());
     }
 
-    Config::merge(array(
+    Config::overwrite(array(
       "get_contents_timeout" => 10,
     ));
   }

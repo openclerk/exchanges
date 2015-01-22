@@ -30,6 +30,7 @@ class CoinsE extends SimpleExchange {
     switch (strtoupper($str)) {
       // exceptions
       case "DOGE": return "dog";
+      case "BC": return "bc1";
 
       // otherwise return lowercase
       default:
