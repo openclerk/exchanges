@@ -25,7 +25,7 @@ class Bit2c extends SimpleExchange {
     switch (strtolower($str)) {
       case "ils": return "nis";
       default:
-        return strtoupper($str);
+        return strtolower($str);
     }
   }
 
