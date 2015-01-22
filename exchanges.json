@@ -17,5 +17,6 @@
   "itbit": "\\Exchange\\ItBit",
   "kraken": "\\Exchange\\Kraken",
   "poloniex": "\\Exchange\\Poloniex",
-  "themoneyconverter": "\\Exchange\\TheMoneyConverter"
+  "themoneyconverter": "\\Exchange\\TheMoneyConverter",
+  "vircurex": "\\Exchange\\Vircurex"
 }

@@ -27,9 +27,18 @@ class CurrencyOrder {
     // cryptocurrencies
     'btc',
     'ltc',
+    'nmc',
     'dog',
     'xrp',
+    'xpm',
     'ppc',
+    'dvc',
+    'trc',
+    'qrk',
+    'dgc',
+    'wdc',
+    'bc1',
+    'ftc',
     // TODO list more
 
     // commodities
