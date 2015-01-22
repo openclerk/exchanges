@@ -10,5 +10,6 @@
   "btce": "\\Exchange\\BTCe",
   "bter": "\\Exchange\\Bter",
   "cexio": "\\Exchange\\CEXio",
-  "coinbase": "\\Exchange\\Coinbase"
+  "coinbase": "\\Exchange\\Coinbase",
+  "coins-e": "\\Exchange\\CoinsE"
 }

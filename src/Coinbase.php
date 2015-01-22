@@ -49,6 +49,11 @@ class Coinbase extends SimpleExchange {
         continue;
       }
 
+      if ($currency2 == "ghs") {
+        // do not use GHS; this is a commodity currency
+        continue;
+      }
+
       $rate = array(
         "currency1" => $currency2,
         "currency2" => $currency1,
