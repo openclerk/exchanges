@@ -88,7 +88,7 @@ abstract class AbstractExchangeTest extends \PHPUnit_Framework_TestCase {
   function testAllMarketsHaveLastTrade() {
     $rates = $this->getAllRates();
     foreach ($rates as $rate) {
-      $key = $rate['currency1'] . $rate['currency2'];
+      $key = $rate['currency1'] . "/" . $rate['currency2'];
       $this->assertTrue(isset($rate['last_trade']), "last_trade not set in " . print_r($rate, true));
       $this->assertGreaterThan(0, $rate['last_trade'], "Last trade for '$key' should be greater than 0");
     }
@@ -110,8 +110,11 @@ abstract class AbstractExchangeTest extends \PHPUnit_Framework_TestCase {
     $rates = $this->getAllRates();
     foreach ($rates as $rate) {
       if (isset($rate['bid']) && isset($rate['ask'])) {
-        $key = $rate['currency1'] . $rate['currency2'];
-        $this->assertGreaterThanOrEqual($rate['bid'], $rate['ask'], "Expected bid > ask for '$key' market");
+        // some exchanges have markets with zero bids or zero asks; don't fail here
+        if ($rate['bid'] != 0 && $rate['ask'] != 0) {
+          $key = $rate['currency1'] . "/" . $rate['currency2'];
+          $this->assertGreaterThanOrEqual($rate['bid'], $rate['ask'], "Expected bid > ask for '$key' market");
+        }
       }
     }
   }

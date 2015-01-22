@@ -7,5 +7,6 @@
   "bitstamp": "\\Exchange\\Bitstamp",
   "bittrex": "\\Exchange\\Bittrex",
   "btcchina": "\\Exchange\\BTCChina",
-  "btce": "\\Exchange\\BTCe"
+  "btce": "\\Exchange\\BTCe",
+  "bter": "\\Exchange\\Bter"
 }
