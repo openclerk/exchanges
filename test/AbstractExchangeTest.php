@@ -135,4 +135,34 @@ abstract class AbstractExchangeTest extends \PHPUnit_Framework_TestCase {
     }
   }
 
+  /**
+   * In openclerk/exchanges, we want to return all exchange pairs according to a
+   * particular currency order.
+   */
+  function testMarketsAreOrdered() {
+    $markets = $this->getAllMarkets();
+    foreach ($markets as $pair) {
+      if (\Exchange\CurrencyOrder::hasOrder($pair[0])) {
+        if (\Exchange\CurrencyOrder::hasOrder($pair[1])) {
+          $this->assertTrue(\Exchange\CurrencyOrder::isOrdered($pair[0], $pair[1]), "Expected reverse order of pair " . implode("/", $pair));
+        }
+      }
+    }
+  }
+
+  /**
+   * In openclerk/exchanges, we want to return all exchange pairs according to a
+   * particular currency order.
+   */
+  function testRatesAreOrdered() {
+    $rates = $this->getAllRates();
+    foreach ($rates as $rate) {
+      if (\Exchange\CurrencyOrder::hasOrder($rate['currency1'])) {
+        if (\Exchange\CurrencyOrder::hasOrder($rate['currency2'])) {
+          $this->assertTrue(\Exchange\CurrencyOrder::isOrdered($rate['currency1'], $rate['currency2']), "Expected reverse order of pair " . $rate['currency1'] . "/" . $rate['currency2']);
+        }
+      }
+    }
+  }
+
 }
