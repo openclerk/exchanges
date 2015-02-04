@@ -32,6 +32,7 @@ class Poloniex extends SimpleExchange {
       case "DOGE": return "dog";
       case "BLK": return "bc1";
       case "XUSD": return "usd";
+      case "SJCX": return "sj1";
 
       // otherwise return lowercase
       default:
