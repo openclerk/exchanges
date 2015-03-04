@@ -60,10 +60,15 @@ class TheMoneyConverter extends SimpleExchange {
       }
 
       if (preg_match("#1 [^=]+ = ([0-9\.]+) #i", $description, $matches)) {
+        if ($matches[1] == 0) {
+          // prevent div/0
+          continue;
+        }
+
         $result[] = array(
           'currency1' => $currency1,
           'currency2' => $currency2,
-          'last_trade' => $matches[1],
+          'last_trade' => 1.0 / $matches[1],      // flip the values around; issue #423
         );
       }
     }

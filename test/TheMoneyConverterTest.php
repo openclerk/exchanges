@@ -23,4 +23,15 @@ class TheMoneyConverterTest extends AbstractExchangeTest {
     $this->assertNotFalse(array_search(array('usd', 'gbp'), $markets), "Expected USD/GBP market in " . $this->printMarkets($markets));
   }
 
+  /**
+   * Tests that we get the correct values for a given pair.
+   * usd/nzd means "usd per nzd" therefore should be < 1.0.
+   * Issue #423
+   */
+  function testUSDNZDLastTradeValue() {
+    $last_trade = $this->exchange->fetchLastTrade('usd', 'nzd', $this->logger);
+    $this->assertNotNull($last_trade);
+    $this->assertLessThan(1.0, $last_trade);
+  }
+
 }
