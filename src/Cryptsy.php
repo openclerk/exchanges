@@ -6,6 +6,7 @@ use \Openclerk\Currencies\SimpleExchange;
 use \Openclerk\Currencies\ExchangeRateException;
 use \Monolog\Logger;
 use \Apis\Fetch;
+use \Apis\FetchException;
 
 class Cryptsy extends SimpleExchange {
 
@@ -38,47 +39,110 @@ class Cryptsy extends SimpleExchange {
     }
   }
 
+  static $cached_rates = null;
+
+  /**
+   * Because the Cryptsy API returns such a huge file, it makes sense to cache this across
+   * multiple requests within the same session; it's unlikely to have changed much.
+   */
+  function fetchCachedRates(Logger $logger) {
+    if (self::$cached_rates === null) {
+      // this is a huge file!
+      $url = "http://pubapi.cryptsy.com/api.php?method=marketdatav2";
+      $logger->info($url);
+
+      $raw = Fetch::get($url);
+
+      // reduce the size of the JSON file to reduce memory usage when trying to load JSON
+      $raw = preg_replace('#,"recenttrades":\\[.+?\\]#', "", $raw);
+      self::$cached_rates = $raw;
+      $logger->info("Cached Cryptsy rates");
+    } else {
+      $logger->info("Using cached rates");
+    }
+
+    return self::$cached_rates;
+  }
+
+  function generatePostData($method, $req = array()) {
+
+    $key = "21222550a305da84dc";
+    $secret = "openclerk/exchanges";
+
+    $req['method'] = $method;
+    $mt = explode(' ', microtime());
+    $req['nonce'] = $mt[1];
+
+    // generate the POST data string
+    $post_data = http_build_query($req, '', '&');
+
+    // generate the extra headers
+    $headers = array(
+      'Sign: ' . hash_hmac('sha512', $post_data, $secret),
+      'Key: ' . $key,
+    );
+
+    return array('post' => $post_data, 'headers' => $headers);
+  }
+
   function fetchAllRates(Logger $logger) {
-    // this is a huge file!
-    $url = "http://pubapi.cryptsy.com/api.php?method=marketdatav2";
+
+    $params = $this->generatePostData("getmarkets");
+
+    $url = "https://www.cryptsy.com/api";
     $logger->info($url);
 
-    $raw = Fetch::get($url);
-
-    // reduce the size of the JSON file to reduce memory usage
-    $raw = preg_replace('#,"recenttrades":\\[.+?\\]#', "", $raw);
-
+    $raw = Fetch::post($url, $params['post'], array(), $params['headers']);
     $json = Fetch::jsonDecode($raw);
 
     if (!$json['success']) {
-      throw new ExchangeRateException("API request failed");
+      throw new ExchangeRateException($json['error']);
     }
 
     $result = array();
 
-    foreach ($json['return']['markets'] as $key => $market) {
-      if ($market['lasttradeprice'] == 0) {
+    foreach ($json['return'] as $market) {
+      $key = $market['label'];
+
+      if ($market['last_trade'] == 0) {
         $logger->info("Ignoring '$key' market: last trade price is 0");
         continue;
       }
 
-      $currency1 = $this->getCurrencyCode($market['secondarycode']);
-      $currency2 = $this->getCurrencyCode($market['primarycode']);
+      $currency1 = $this->getCurrencyCode($market['secondary_currency_code']);
+      $currency2 = $this->getCurrencyCode($market['primary_currency_code']);
 
       $rate = array(
         "currency1" => $currency1,
         "currency2" => $currency2,
-        "last_trade" => $market['lasttradeprice'],
-        "volume" => $market['volume'],
+        "last_trade" => $market['last_trade'],
+        "volume" => $market['current_volume'],    // 24 hour trading volume in this market
         // Cryptsy returns buy/sell incorrectly
-        'bid' => $market['buyorders'][0]['price'],
-        'ask' => $market['sellorders'][0]['price'],
+        'low' => $market['low_trade'],
+        'high' => $market['high_trade'],
+        // bid/ask is part of the public API which is huge and causes scripts to crash
+        // TODO: add #fetchMarkets() to selectively download bid/ask data
       );
+
+      if ($this->shouldSwitch($currency1, $currency2)) {
+        $rate = array(
+          'currency1' => $rate['currency2'],
+          'currency2' => $rate['currency1'],
+          'last_trade' => 1 / $rate['last_trade'],
+          'volume' => $rate['volume'] / $rate['last_trade'],
+          'low' => $rate['low'] == 0 ? 0 : 1 / $rate['low'],
+          'high' => $rate['high'] == 0 ? 0 : 1 / $rate['high'],
+        );
+      }
 
       $result[] = $rate;
     }
 
     return $result;
+  }
+
+  function shouldSwitch($cur1, $cur2) {
+    return !\Exchange\CurrencyOrder::isOrdered($cur1, $cur2);
   }
 
 }

@@ -13,16 +13,6 @@ class CryptsyTest extends AbstractExchangeTest {
     parent::__construct(new \Exchange\Cryptsy());
   }
 
-  function setUp() {
-    // the Cryptsy API is really large so we need to wait longer for it to download
-    \Openclerk\Config::overwrite(array(
-      "get_contents_timeout" => 30,
-    ));
-
-    // increase time limit
-    set_time_limit(45);
-  }
-
   function testHasBTCLTC() {
     $markets = $this->getAllMarkets();
     $this->assertNotFalse(array_search(array('btc', 'ltc'), $markets), "Expected BTC/LTC market in " . $this->printMarkets($markets));
@@ -47,9 +37,10 @@ class CryptsyTest extends AbstractExchangeTest {
   }
 
   /**
-   * We instead test a single market that should always have valid values
+   * We instead test a single market that should always have valid values.
+   * This is now disabled because we no longer have access to bid/ask prices directly
    */
-  function testBTCLTCAskHigherThanBid() {
+  function disabled_testBTCLTCAskHigherThanBid() {
     $rates = $this->getAllRates();
     foreach ($rates as $rate) {
       if ($rate['currency1'] == "btc" && $rate['currency2'] == "ltc") {
