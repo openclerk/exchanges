@@ -11,6 +11,13 @@ class CryptsyTest extends AbstractExchangeTest {
 
   function __construct() {
     parent::__construct(new \Exchange\Cryptsy());
+
+    // public API key details for cryptsy API
+    \Openclerk\Config::overwrite(array(
+      "exchange_cryptsy_key" => "21222550a305da84dc",
+      "exchange_cryptsy_secret" => "openclerk/exchanges",
+    ));
+
   }
 
   function testHasBTCLTC() {

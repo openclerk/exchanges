@@ -4,6 +4,7 @@ namespace Exchange;
 
 use \Openclerk\Currencies\SimpleExchange;
 use \Openclerk\Currencies\ExchangeRateException;
+use \Openclerk\Config;
 use \Monolog\Logger;
 use \Apis\Fetch;
 use \Apis\FetchException;
@@ -39,35 +40,9 @@ class Cryptsy extends SimpleExchange {
     }
   }
 
-  static $cached_rates = null;
-
-  /**
-   * Because the Cryptsy API returns such a huge file, it makes sense to cache this across
-   * multiple requests within the same session; it's unlikely to have changed much.
-   */
-  function fetchCachedRates(Logger $logger) {
-    if (self::$cached_rates === null) {
-      // this is a huge file!
-      $url = "http://pubapi.cryptsy.com/api.php?method=marketdatav2";
-      $logger->info($url);
-
-      $raw = Fetch::get($url);
-
-      // reduce the size of the JSON file to reduce memory usage when trying to load JSON
-      $raw = preg_replace('#,"recenttrades":\\[.+?\\]#', "", $raw);
-      self::$cached_rates = $raw;
-      $logger->info("Cached Cryptsy rates");
-    } else {
-      $logger->info("Using cached rates");
-    }
-
-    return self::$cached_rates;
-  }
-
   function generatePostData($method, $req = array()) {
-
-    $key = "21222550a305da84dc";
-    $secret = "openclerk/exchanges";
+    $key = Config::get('exchange_cryptsy_key');   // aka Application Key
+    $secret = Config::get('exchange_cryptsy_secret');   // aka Application/Device ID
 
     $req['method'] = $method;
     $mt = explode(' ', microtime());
