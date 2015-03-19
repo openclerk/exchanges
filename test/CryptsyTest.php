@@ -11,11 +11,16 @@ class CryptsyTest extends AbstractExchangeTest {
 
   function __construct() {
     parent::__construct(new \Exchange\Cryptsy());
+  }
 
+  function setUp() {
     // the Cryptsy API is really large so we need to wait longer for it to download
     \Openclerk\Config::overwrite(array(
       "get_contents_timeout" => 30,
     ));
+
+    // increase time limit
+    set_time_limit(45);
   }
 
   function testHasBTCLTC() {
