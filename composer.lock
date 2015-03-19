@@ -85,12 +85,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/openclerk/apis.git",
-                "reference": "27e6fd79e2cb96f4190f93d8c94416e399c5d86a"
+                "reference": "e725867dcb5702002e24c0abd78d26722872c468"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openclerk/apis/zipball/27e6fd79e2cb96f4190f93d8c94416e399c5d86a",
-                "reference": "27e6fd79e2cb96f4190f93d8c94416e399c5d86a",
+                "url": "https://api.github.com/repos/openclerk/apis/zipball/e725867dcb5702002e24c0abd78d26722872c468",
+                "reference": "e725867dcb5702002e24c0abd78d26722872c468",
                 "shasum": ""
             },
             "require": {
@@ -110,7 +110,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "A library for defining and using APIs",
-            "time": "2015-03-18 04:14:48"
+            "time": "2015-03-19 03:55:55"
         },
         {
             "name": "openclerk/config",
@@ -141,12 +141,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/openclerk/currencies.git",
-                "reference": "7ba77fb20c02c8b72f11a8a5e8a71a2563e77d8a"
+                "reference": "0f6676dce1a08b5cc31ab79fef420f53ddaaa782"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/openclerk/currencies/zipball/7ba77fb20c02c8b72f11a8a5e8a71a2563e77d8a",
-                "reference": "7ba77fb20c02c8b72f11a8a5e8a71a2563e77d8a",
+                "url": "https://api.github.com/repos/openclerk/currencies/zipball/0f6676dce1a08b5cc31ab79fef420f53ddaaa782",
+                "reference": "0f6676dce1a08b5cc31ab79fef420f53ddaaa782",
                 "shasum": ""
             },
             "require": {
@@ -164,7 +164,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Interface defintions of fiat, cryptocurrencies and commodity currencies",
-            "time": "2015-03-18 02:09:03"
+            "time": "2015-03-19 03:29:06"
         },
         {
             "name": "psr/log",
