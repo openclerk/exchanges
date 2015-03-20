@@ -76,8 +76,6 @@ class Kraken extends SimpleExchange {
       case "btcusd":
       case "btcjpy":
       case "btcgbp":
-      case "eurven":
-      case "usdven":
         return true;
 
       default:
@@ -159,6 +157,17 @@ class Kraken extends SimpleExchange {
         "high" => $rate['h'][0],
         "low" => $rate['l'][0],
       );
+
+      // issue #456: swap over Kraken ticker data
+      if ($rate['currency1'] == 'btc') {
+        $copy = $rate;
+        $rate['last_trade'] = 1 / $copy['last_trade'];
+        $rate['bid'] = 1 / $copy['ask'];
+        $rate['ask'] = 1 / $copy['bid'];
+        $rate['volume'] = $copy['volume'] / $copy['last_trade'];
+        $rate['high'] = 1 / $copy['low'];
+        $rate['low'] = 1 / $copy['high'];
+      }
 
       $result[] = $rate;
     }

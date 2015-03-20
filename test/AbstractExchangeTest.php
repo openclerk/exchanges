@@ -138,4 +138,18 @@ abstract class AbstractExchangeTest extends AbstractDisabledExchangeTest {
     $this->assertFalse($this->exchange instanceof DisabledExchange, "We cannot run tests on disabled exchanges");
   }
 
+  /**
+   * So far we don't have any currency pairs where BTC/XXX is greater than 100,
+   * so this is a simple test to make sure we aren't returning swapped data (issue #456).
+   */
+  function testAllBTCMarketsAreLessThan100() {
+    $rates = $this->getAllRates();
+    foreach ($rates as $rate) {
+      $key = $rate['currency1'] . "/" . $rate['currency2'];
+      if ($rate['currency1'] == 'btc') {
+        $this->assertLessThan(100, $rate['last_trade'], "Last trade for '$key' should not be greater than 100: " . $rate['last_trade']);
+      }
+    }
+  }
+
 }
