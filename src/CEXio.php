@@ -92,6 +92,10 @@ class CEXio extends SimpleExchange {
       if (!isset($json['last'])) {
         throw new ExchangeRateException("Could not find any last rate");
       }
+      if ($json['last'] == 0) {
+        // skip any markets that have a 0 last_trade
+        continue;
+      }
 
       $rate = array(
         "currency1" => $currency1,
