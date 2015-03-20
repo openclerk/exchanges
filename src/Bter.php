@@ -47,6 +47,11 @@ class Bter extends SimpleExchange {
     $result = array();
 
     foreach ($json as $key => $market) {
+      if ($market['last'] == 0) {
+        // ignore any broken markets
+        continue;
+      }
+
       $pairs = explode("_", $key, 2);
 
       $currency1 = $this->getCurrencyCode($pairs[0]);
