@@ -105,8 +105,8 @@ class Cryptsy extends SimpleExchange {
           'currency2' => $rate['currency1'],
           'last_trade' => 1 / $rate['last_trade'],
           'volume' => $rate['volume'] / $rate['last_trade'],
-          'low' => $rate['low'] == 0 ? 0 : 1 / $rate['low'],
-          'high' => $rate['high'] == 0 ? 0 : 1 / $rate['high'],
+          'low' => $rate['high'] == 0 ? 0 : 1 / $rate['high'],
+          'high' => $rate['low'] == 0 ? 0 : 1 / $rate['low'],
         );
       }
 
