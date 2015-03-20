@@ -102,6 +102,23 @@ abstract class AbstractExchangeTest extends AbstractDisabledExchangeTest {
   }
 
   /**
+   * For all markets, the high should always be higher than the low - or else there is
+   * something odd going on.
+   */
+  function testAllMarketsHaveHighHigherThanLow() {
+    $rates = $this->getAllRates();
+    foreach ($rates as $rate) {
+      if (isset($rate['high']) && isset($rate['low'])) {
+        // some exchanges have markets with zero bids or zero asks; don't fail here
+        if ($rate['high'] != 0 && $rate['low'] != 0) {
+          $key = $rate['currency1'] . "/" . $rate['currency2'];
+          $this->assertGreaterThanOrEqual($rate['low'], $rate['high'], "Expected high > low for '$key' market");
+        }
+      }
+    }
+  }
+
+  /**
    * In openclerk/exchanges, we want to return all exchange pairs according to a
    * particular currency order.
    */
