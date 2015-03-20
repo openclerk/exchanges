@@ -1,4 +1,4 @@
-openclerk/exchanges
+openclerk/exchanges [![Build Status](https://travis-ci.org/openclerk/exchanges.svg?branch=master)](https://travis-ci.org/openclerk/exchanges)
 ===================
 
 A library for accessing live exchange market data for many different exchanges,
