@@ -40,6 +40,20 @@ class Poloniex extends SimpleExchange {
     }
   }
 
+  /**
+   * @param $currency1 3-character code
+   * @param $currency2 3-character code
+   */
+  function needsSwitch($currency1, $currency2) {
+    switch ($currency1 . $currency2) {
+      case "btcusd":
+        return true;
+
+      default:
+        return false;
+    }
+  }
+
   function fetchAllRates(Logger $logger) {
     $url = "https://poloniex.com/public?command=returnTicker";
     $logger->info($url);
@@ -69,6 +83,19 @@ class Poloniex extends SimpleExchange {
         'high' => $market['high24hr'],
         'low' => $market['low24hr'],
       );
+
+      if ($this->needsSwitch($currency1, $currency2)) {
+        $rate = array(
+          "currency1" => $rate['currency2'],
+          "currency2" => $rate['currency1'],
+          "last_trade" => 1 / $rate['last_trade'],
+          "volume" => $rate['volume'] / $rate['last_trade'],
+          'bid' => $rate['ask'] == 0 ? 0 : 1 / $rate['ask'],
+          'ask' => $rate['bid'] == 0 ? 0 : 1 / $rate['bid'],
+          'high' => $rate['low'] == 0 ? 0 : 1 / $rate['low'],
+          'low' => $rate['high'] == 0 ? 0 : 1 / $rate['high'],
+        );
+      }
 
       $result[] = $rate;
     }
