@@ -4,10 +4,15 @@ namespace Exchange;
 
 use \Openclerk\Currencies\SimpleExchange;
 use \Openclerk\Currencies\ExchangeRateException;
+use \Openclerk\Currencies\DisabledExchange;
 use \Monolog\Logger;
 use \Apis\Fetch;
 
-class VirtEx extends SimpleExchange {
+class VirtEx extends SimpleExchange implements DisabledExchange {
+
+  function disabledAt() {
+    return "2015-03-20";
+  }
 
   function getName() {
     return "VirtEx";
