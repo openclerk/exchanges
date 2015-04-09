@@ -16,6 +16,7 @@
   "cryptsy": "\\Exchange\\Cryptsy",
   "itbit": "\\Exchange\\ItBit",
   "kraken": "\\Exchange\\Kraken",
+  "mtgox": "\\Exchange\\MtGox",
   "poloniex": "\\Exchange\\Poloniex",
   "themoneyconverter": "\\Exchange\\TheMoneyConverter",
   "vircurex": "\\Exchange\\Vircurex",
