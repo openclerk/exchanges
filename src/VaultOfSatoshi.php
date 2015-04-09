@@ -11,7 +11,7 @@ use \Apis\Fetch;
 class VaultOfSatoshi extends SimpleExchange implements DisabledExchange {
 
   function disabledAt() {
-    return "2014-11-07";
+    return "2015-04-09";
   }
 
   function getName() {
