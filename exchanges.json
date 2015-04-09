@@ -19,6 +19,7 @@
   "mtgox": "\\Exchange\\MtGox",
   "poloniex": "\\Exchange\\Poloniex",
   "themoneyconverter": "\\Exchange\\TheMoneyConverter",
+  "vaultofsatoshi": "\\Exchange\\VaultOfSatoshi",
   "vircurex": "\\Exchange\\Vircurex",
   "virtex": "\\Exchange\\VirtEx"
 }

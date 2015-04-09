@@ -8,22 +8,22 @@ use \Openclerk\Currencies\DisabledExchange;
 use \Monolog\Logger;
 use \Apis\Fetch;
 
-class MtGox extends SimpleExchange implements DisabledExchange {
+class VaultOfSatoshi extends SimpleExchange implements DisabledExchange {
 
   function disabledAt() {
     return "2014-11-07";
   }
 
   function getName() {
-    return "Mt.Gox";
+    return "Vault of Satoshi";
   }
 
   function getCode() {
-    return "mtgox";
+    return "vaultofsatoshi";
   }
 
   function getURL() {
-    return "https://mtgox.com/";
+    return "https://www.vaultofsatoshi.com/";
   }
 
   public function fetchMarkets(Logger $logger) {
