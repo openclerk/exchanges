@@ -59,4 +59,27 @@ abstract class AbstractDisabledExchangeTest extends \PHPUnit_Framework_TestCase 
     $this->assertTrue($this->exchange instanceof DisabledExchange, "Expected this exchange to be disabled");
   }
 
+  /**
+   * Return a file path to {@code __DIR__ . "/../exchanges.json"}, by default.
+   */
+  function getExchangesJSON() {
+    return __DIR__ . "/../exchanges.json";
+  }
+
+  static $tested_codes = array();
+
+  function testUniqueCode() {
+    $code = $this->exchange->getCode();
+    $this->assertFalse(isset(self::$tested_codes[$code]), "We've already tested an exchange '$code'");
+    self::$tested_codes[$code] = $code;
+  }
+
+  function testCodeInAccountsJson() {
+    $this->assertFileExists($this->getExchangesJSON());
+    $json = json_decode(file_get_contents($this->getExchangesJSON()), true /* assoc */);
+    $code = $this->exchange->getCode();
+    $this->assertTrue(isset($json[$code]), "Expected '$code' account in exchanges.json");
+    $this->assertEquals("\\" . get_class($this->exchange), $json[$code], "Expected '$code' to return the same class");
+  }
+
 }
